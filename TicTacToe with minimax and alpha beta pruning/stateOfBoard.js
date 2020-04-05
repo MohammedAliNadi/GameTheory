@@ -38,6 +38,7 @@ class BoardState {
     aiThought.html("AI: Try as hard as you want, you will never beat me")
   }
   
+  // ------------------------------------------------------------------------
   // Initialise alpha = -infinity and beta = infinity as the worst possible cases. 
   performAIMove() {
     let res = this.evaluateBoard(this.board, this.turn, Number.NEGATIVE_INFINITY, Number.POSITIVE_INFINITY)
@@ -65,6 +66,7 @@ class BoardState {
     if(lengthOfMoves==0) return [board, 0]
     
     player = this.symbolOfPlayer[(1-turn)/2]
+    //minimax algorithm
     if(turn==-1) {
       let bestBoard = null
       for(let i=0; i<lengthOfMoves; ++i) {
@@ -84,6 +86,7 @@ class BoardState {
       return [bestBoard, Beta]
     }
     // The condition to prune a node is when alpha becomes greater than or equal to beta.
+    // alpha beta pruning
     if(turn==1) {
       let bestBoard = null
       for(let i=0; i<lengthOfMoves; ++i) {
@@ -105,7 +108,7 @@ class BoardState {
 	
 	//console.log('Hello')
   }
-  
+  //-------------------------------------------------------------------------
   updateText() {
     playerTurn.html(this.playerOrAI[this.currentPlayer] + " Turn")
   }
