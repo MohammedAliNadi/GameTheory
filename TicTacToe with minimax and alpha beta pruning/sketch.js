@@ -22,20 +22,23 @@ function setup() {
 // Also creating the reset board button, giving it a size and a activity listener
 function initLabels() {
   restartButton = createButton('Restart the game');
-  restartButton.position(width+30, 400);
+  restartButton.position(width+30, 500);
   restartButton.mousePressed(newGame);
   
   gameInfo = createP('This game of Tic-Tac-Toe utilises the Minimax algorithm, meaning you will never win. Have fun.').style('background-color', '#FFF').style('font-size', '25px').style('padding', '5px')
   gameInfo.position(width+30, 0);
   
+   gameInfo2 = createP('Minimax is a recursive algorithm which is used to choose an optimal move for a player assuming that the opponent is also playing optimally. As its name suggests, its goal is to minimize the maximum loss (minimize the worst case scenario). Play the game to find out what that means.').style('background-color', '#FFF').style('font-size', '25px').style('padding', '5px')
+  gameInfo2.position(width+30, 100);
+  
   playerTurn = createP("' turn").style('background-color', '#FFF').style('font-size', '20px').style('padding', '5px')
-  playerTurn.position(width+30, 150);
+  playerTurn.position(width+30, 350);
   
   aiThought = createP("AI: Try as hard as you want, you will never beat me").style('background-color', '#FFF').style('font-size', '25px').style('padding', '5px')
-  aiThought.position(width+30, 300);
+  aiThought.position(width+30, 400);
   
   winningPlayer = createP('No winner yet').style('background-color', '#FFF').style('font-size', '25px').style('padding', '5px')
-  winningPlayer.position(width+30, 200);
+  winningPlayer.position(width+30, 300);
   
  
 }
