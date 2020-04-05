@@ -1,4 +1,5 @@
 class Board {
+  //Creating the layout of the board
   constructor(boardSize, board = null) {
     this.boardSize = boardSize
   
@@ -46,7 +47,8 @@ class Board {
       this.board.push(row)
     }
   }
-  
+  //checks for a winning conditon
+  //
   foundWinner() {
     for(let i=0;i<this.boardSize;++i) {
       let temp=this.board[i][0];
@@ -107,6 +109,8 @@ class Board {
         }
       }
     }
+    //setting up the board divison using lines
+
     if(temp != '') {
       stroke(220, 0, 0);
       strokeWeight(8);
@@ -146,7 +150,7 @@ class Board {
     return 'DRAW';
   }
   
-  cloneBoard() {
+  duplicateBoard() {
 	let newBoard = this.board.map(arr => arr.slice())
     return new Board(this.boardSize, newBoard)
   }

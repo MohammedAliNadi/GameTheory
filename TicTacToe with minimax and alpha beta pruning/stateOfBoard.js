@@ -1,14 +1,13 @@
 class BoardState {
-  constructor(boardSize, currentPlayer, board = null) {
-    if(!board) this.board = new Board(boardSize)
+  constructor(sizeOfBoard, currentPlayer, board = null) {
+    if(!board) this.board = new Board(sizeOfBoard)
     else this.board = board
     
     
     this.currentPlayer = currentPlayer
-    this.turn = 1-(2*currentPlayer) // if currP=0 then 1 else -1
-    this.symbolOfPlayer = ['O', 'X']
-    this.playerOrAI = ['AI', 'Your']
-
+    this.turn = 1-(2*currentPlayer) // if the currentPlayer=0 then 1, else -1
+    // assigning the symbol to both players
+    this.symbolOfPlayer = ['O', 'X'], this.playerOrAI = ['AI', 'Your']
     this.winner = null
   }
   
@@ -28,7 +27,7 @@ class BoardState {
   createNewGame() {
     this.currentPlayer = 1
     this.turn = -1
-  
+
     this.board.newBoard()
     this.winner = null
     isLooping = true
@@ -60,7 +59,7 @@ class BoardState {
       else return [board, 0]
     }
     
-    let newBoard = board.cloneBoard()
+    let newBoard = board.duplicateBoard()
     let availableMoves = board.giveAvailableTiles()
     let lengthOfMoves = availableMoves.length
     if(lengthOfMoves==0) return [board, 0]
@@ -72,13 +71,13 @@ class BoardState {
         let theMove = availableMoves[i]
         newBoard.board[theMove[0]][theMove[1]] = player
         if(i!=0) {
-          let prevMove = availableMoves[i-1]
-          newBoard.board[prevMove[0]][prevMove[1]] = ''
+          let previousMove = availableMoves[i-1]
+          newBoard.board[previousMove[0]][previousMove[1]] = ''
         }
         let res = this.evaluateBoard(newBoard, -1*turn, Alpha, Beta)
         if(Beta>res[1]) {
           Beta=res[1]
-          bestBoard = newBoard.cloneBoard()
+          bestBoard = newBoard.duplicateBoard()
         }
         if(Beta<=Alpha) return [bestBoard, Beta]
       }
@@ -91,13 +90,13 @@ class BoardState {
         let theMove = availableMoves[i]
         newBoard.board[theMove[0]][theMove[1]] = player
         if(i!=0) {
-          let prevMove = availableMoves[i-1]
-          newBoard.board[prevMove[0]][prevMove[1]] = ''
+          let previousMove = availableMoves[i-1]
+          newBoard.board[previousMove[0]][previousMove[1]] = ''
         }
         let res = this.evaluateBoard(newBoard, -1*turn, Alpha, Beta)
         if(Alpha<res[1]) {
           Alpha=res[1]
-          bestBoard = newBoard.cloneBoard()
+          bestBoard = newBoard.duplicateBoard()
         }
         if(Beta<=Alpha) return [bestBoard, Alpha]
       }
